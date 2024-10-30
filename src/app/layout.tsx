@@ -12,9 +12,9 @@ import "./globals.css";
 const instrument = Instrument_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Modern Decor Diaries for Stylish and Sustainable Home Design",
+  title: "Kenyan Talents - Nurturing Skills, Empowering Youth",
   description:
-    'Get inspired and discover the perfect decor ideas for your home. Modern Decor Diaries is more than just a store – it is a curated collection of stylish home finds, design tips, and inspiration to make decorating your space fun and easy.',
+    "Kenyan Talents is dedicated to inspiring and empowering Kenyan youth by nurturing their unique skills and talents. Join our community for resources, opportunities, and support to help you unlock your full potential. Follow us on Twitter and Instagram @kenyantalents for the latest updates, success stories, and more.",
 };
 
 export default function RootLayout({

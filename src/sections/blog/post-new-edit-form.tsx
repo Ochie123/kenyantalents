@@ -51,8 +51,8 @@ export function PostNewEditForm({ currentPost }: Props) {
       try {
         setLoading(true);
         const [categoriesRes, tagsRes] = await Promise.all([
-          axios.get('https://api.moderndecordiaries.com/api/categories/'),
-          axios.get('https://api.moderndecordiaries.com/api/tags/')
+          axios.get('https://kgt.inventoryr.online/api/categories/'),
+          axios.get('https://kgt.inventoryr.online/api/tags/')
         ]);
         
         const allCategories = categoriesRes.data.results;
@@ -156,7 +156,7 @@ export function PostNewEditForm({ currentPost }: Props) {
       });
   
       const token = localStorage.getItem('token');
-      const baseUrl = 'https://api.moderndecordiaries.com/api/blogs/';
+      const baseUrl = 'https://kgt.inventoryr.online/api/blogs/';
       
       let response;
       if (currentPost) {

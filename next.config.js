@@ -21,7 +21,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.moderndecordiaries.com',
+        hostname: 'kgt.inventoryr.online',
         pathname: '/media/cover_images/**', // Adjust path based on actual image location
       },
     ],

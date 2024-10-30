@@ -6,14 +6,14 @@ import { Box, Typography } from '@mui/material';
 
 const faqData = [
   {
-    heading: "1. How does Moderndecordiaries work?",
+    heading: "1. How does Kenyantalents work?",
     subheading:
       "We curate the cutest baby clothes from your favorite stores like Amazon and others, making it easy for you to find everything in one place. Click on any item you like, and you'll be taken directly to the retailer's website to make your purchase.",
   },
   {
     heading: "2. How do you select the products featured on your site?",
     subheading:
-      "Our team carefully curates each item featured on Moderndecordiaries to ensure we showcase only the best baby clothing and accessories. We prioritize top-rated products from trusted brands, with stylish designs, high-quality materials, and positive customer reviews. We also aim to provide a wide range of styles and sizes to meet every baby's needs.",
+      "Our team carefully curates each item featured on Kenyantalents to ensure we showcase only the best baby clothing and accessories. We prioritize top-rated products from trusted brands, with stylish designs, high-quality materials, and positive customer reviews. We also aim to provide a wide range of styles and sizes to meet every baby's needs.",
   },
   {
     heading: "3. Do you offer discounts or coupons?",
@@ -23,7 +23,7 @@ const faqData = [
   {
     heading: "4. How do I purchase the items featured on your site?",
     subheading:
-      "To purchase any of the baby clothing or accessories showcased on Moderndecordiaries, simply click on the 'Shop Now' button or affiliate link provided with each product listing. This will redirect you to our partner retailer's website, where you can complete your purchase securely. Our affiliate links ensure you receive any applicable discounts or promotions.",
+      "To purchase any of the baby clothing or accessories showcased on Kenyantalents, simply click on the 'Shop Now' button or affiliate link provided with each product listing. This will redirect you to our partner retailer's website, where you can complete your purchase securely. Our affiliate links ensure you receive any applicable discounts or promotions.",
   },
   {
     heading: "5. What is an affiliate link and why do you use them?",

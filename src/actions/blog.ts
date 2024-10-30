@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import { useMemo } from 'react';
 import type { IPostItem } from '@/types/blog';
 
-const API_URL = 'https://api.moderndecordiaries.com/api/blogs/';
+const API_URL = 'https://kgt.inventoryr.online/api/blogs/';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface CategoriesResponse {
@@ -20,7 +20,7 @@ interface TagsResponse {
 }
 
 export function useTags() {
-  const { data, error } = useSWR<TagsResponse>('https://api.moderndecordiaries.com/api/tags/', fetcher);
+  const { data, error } = useSWR<TagsResponse>('https://kgt.inventoryr.online/api/tags/', fetcher);
   
   return {
       tags: data?.results || [],
@@ -31,7 +31,7 @@ export function useTags() {
 
 // hooks/useCategories.ts
 export function useCategories() {
-  const { data, error } = useSWR<CategoriesResponse>('https://api.moderndecordiaries.com/api/categories/', fetcher);
+  const { data, error } = useSWR<CategoriesResponse>('https://kgt.inventoryr.online/api/categories/', fetcher);
   
   return {
       categories: data?.results || [],

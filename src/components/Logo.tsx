@@ -26,7 +26,7 @@ export function Logo(props: React.ComponentPropsWithoutRef<'svg'>) {
         fontWeight="bold"
         fontSize="20"
       >
-        Moderndecor
+        Kenyantalents
       </text>
       {/* Remove or comment out the path element */}
       {/* <path d="M120 20 L125 25 L120 30" stroke="white" strokeWidth="2" /> */}

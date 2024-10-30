@@ -34,7 +34,7 @@ const initialState: ChatSliceType = {
 };
 
 export const fetchChatMessages = createAsyncThunk<Message[], void, {}>("/api/chat/messages/", async () => {
-  const response = await axios.get("https://api.moderndecordiaries.com/api/chat/messages/", {
+  const response = await axios.get("https://kgt.inventoryr.online/api/chat/messages/", {
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
@@ -43,7 +43,7 @@ export const fetchChatMessages = createAsyncThunk<Message[], void, {}>("/api/cha
 });
 
 export const fetchCurrentUser = createAsyncThunk<Participant, void, {}>("/api/users/current/", async () => {
-  const response = await axios.get("https://api.moderndecordiaries.com/apis/users/current/", {
+  const response = await axios.get("https://kgt.inventoryr.online/apis/users/current/", {
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
