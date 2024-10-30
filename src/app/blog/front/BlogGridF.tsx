@@ -44,22 +44,19 @@ const BlogGridF = () => {
         router.push(`${pathname}${query}`);
     };
 
-    useEffect(() => {
-        if (postsLoading || categoriesLoading || tagsLoading) {
-            // Display a skeleton loading state
-            return (
-                <div className='blog grid md:py-20 py-10 sm:pt-[200px]'>
-                    <div className="container">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {Array.from({ length: 6 }).map((_, index) => (
-                                <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-64"></div>
-                            ))}
-                        </div>
+    if (postsLoading || categoriesLoading || tagsLoading) {
+        return (
+            <div className='blog grid md:py-20 py-10 sm:pt-[200px]'>
+                <div className="container">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-64"></div>
+                        ))}
                     </div>
                 </div>
-            );
-        }
-    }, [postsLoading, categoriesLoading, tagsLoading]);
+            </div>
+        );
+    }
 
     if (!posts || posts.length === 0) {
         return (

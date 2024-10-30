@@ -72,11 +72,87 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
   
   const handleBlogClick = (blogId: string) => {
     router.push(`/blog/${blogId}`);
-};
+  };
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (blog) {
+      setIsLoading(false);
+    }
+  }, [blog]);
+
+  if (isLoading) {
+    return (
+
+        <div className="flex flex-col lg:flex-row gap-8 pt-1">
+          {/* Main Content - 7 columns */}
+          <div className="lg:w-8/12">
+            <div className="animate-pulse bg-gray-200 rounded-lg h-12 mb-5"></div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="animate-pulse bg-gray-200 rounded-full w-12 h-12"></div>
+              <div>
+                <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-32 mb-1"></div>
+                <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-24"></div>
+              </div>
+            </div>
+            <div className="animate-pulse bg-gray-200 rounded-lg h-72 mb-8"></div>
+            <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full mb-4"></div>
+            <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full mb-4"></div>
+            <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full mb-4"></div>
+            <div className="flex items-center gap-4 mt-8 flex-wrap">
+              <div className="animate-pulse bg-gray-200 rounded-full px-3 py-1 h-6 w-24"></div>
+              <div className="animate-pulse bg-gray-200 rounded-full px-3 py-1 h-6 w-24"></div>
+              <div className="animate-pulse bg-gray-200 rounded-full px-3 py-1 h-6 w-24"></div>
+            </div>
+            <div className="flex items-center gap-4 mt-8">
+              <div className="animate-pulse bg-gray-200 rounded-full px-4 py-2 h-8 w-32"></div>
+              <div className="animate-pulse bg-gray-200 rounded-lg h-8 w-8"></div>
+              <div className="animate-pulse bg-gray-200 rounded-lg h-8 w-8"></div>
+              <div className="animate-pulse bg-gray-200 rounded-lg h-8 w-8"></div>
+            </div>
+            <div className="pages font-medium hidden gap-8 lg:flex mt-4 border-t border-line gap-5 py-4">
+              <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-32"></div>
+            </div>
+            <div className="list-recent pt-1">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div key={index} className="item flex gap-4 mt-5 cursor-pointer animate-pulse">
+                  <div className="animate-pulse bg-gray-200 rounded-lg w-20 h-20 flex-shrink-0"></div>
+                  <div>
+                    <div className="animate-pulse bg-gray-200 rounded-full px-3 py-1 h-6 w-24 mb-1"></div>
+                    <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-48"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sidebar - 5 columns */}
+          <div className="lg:w-4/12">
+            <div className="sticky top-24">
+              {/* Author Info */}
+              <div className="bg-white p-6 rounded-lg shadow-sm mb-8 animate-pulse">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="animate-pulse bg-gray-200 rounded-full w-20 h-20"></div>
+                  <div>
+                    <div className="animate-pulse bg-gray-200 rounded-lg h-6 w-32 mb-1"></div>
+                    <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-20"></div>
+                    <div className="animate-pulse bg-gray-200 rounded-full px-4 py-1 h-8 w-24 mt-2"></div>
+                  </div>
+                </div>
+                <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full mb-2"></div>
+                <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full mb-2"></div>
+                <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full mb-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+    );
+  }
 
   return (
     <>
-      <div className='container'>
         <div className="flex flex-col lg:flex-row gap-8 pt-1">
           {/* Main Content - 7 columns */}
           <div className="lg:w-8/12">
@@ -127,36 +203,36 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
                 </span>
               ))}
             </div>
-            <div className="pages font-medium hidden gap-8 lg:flex mt-4">Recent Posts</div>
-            <div className="list-recent pt-1">
-            
-           
-
-
-                                    {posts.slice(0, 5).map(item => (
-                                        <div className="item flex gap-4 mt-5 cursor-pointer" key={item.id} onClick={() => handleBlogClick(item.id)}>
-                                            <Image
-                                                src={item.cover_image}
-                                                width={500}
-                                                height={400}
-                                                alt={item.title}
-                                                className='w-20 h-20 object-cover rounded-lg flex-shrink-0'
-                                            />
-                                            <div>
-                                                <div className="blog-tag whitespace-nowrap bg-green py-0.5 px-2 rounded-full text-button-uppercase text-xs inline-block">{item.tag}</div>
-                                                <div className="text-title mt-1">{truncateTitle(item.title, 80)}</div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
             {/* Share buttons */}
             <div className="flex items-center gap-4 mt-8">
               <span className="font-medium">Share:</span>
-              
               <div className="flex gap-3">
-              <Social socialName={blog.title} className="social-icons" />
+                <Social socialName={blog.title} className="social-icons" />
               </div>
+            </div>
+            <div className="pages font-medium hidden gap-8 lg:flex mt-4 border-t border-line gap-5 py-4">Recent Posts</div>
+            <div className="list-recent pt-1">
+              {posts.slice(0, 5).map((item) => (
+                <div
+                  className="item flex gap-4 mt-5 cursor-pointer"
+                  key={item.id}
+                  onClick={() => handleBlogClick(item.id)}
+                >
+                  <Image
+                    src={item.cover_image}
+                    width={500}
+                    height={400}
+                    alt={item.title}
+                    className="w-20 h-20 object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <div className="blog-tag whitespace-nowrap bg-green py-0.5 px-2 rounded-full text-button-uppercase text-xs inline-block">
+                      {item.tag}
+                    </div>
+                    <div className="text-title mt-1">{truncateTitle(item.title, 80)}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -179,17 +255,15 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
                     <button className="mt-2 px-4 py-1 border rounded-full text-sm hover:bg-gray-50">
                       Like
                     </button>
+                    <div className="flex pt-5">
+                <Social socialName={blog.title} className="social-icons" />
+              </div>
                   </div>
                 </div>
-                <p className="text-gray-600">In sleek lines and soft hues I find, A story told through space, refined.</p>
               </div>
-
-              {/* Recent Posts */}
-   
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }

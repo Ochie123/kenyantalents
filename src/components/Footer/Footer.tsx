@@ -6,7 +6,7 @@ import * as Icon from "@phosphor-icons/react/dist/ssr";
 const Footer = () => {
     return (
         <>
-            <div id="footer" className='footer'>
+            <div id="footer" className='footer border-t border-line gap-5 py-4'>
                 <div className="footer-main bg-surface">
                     <div className="container">
                         <div className="content-footer py-[60px] flex justify-between flex-wrap gap-y-8">
