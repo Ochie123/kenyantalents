@@ -80,11 +80,11 @@ export function PostEditView({ post }: Props) {
       try {
         const token = localStorage.getItem('token');
         const [postRes, categoriesRes, tagsRes] = await Promise.all([
-          axios.get(`http://127.0.0.1:8000/api/blogs/${post}/`, {
+          axios.get(`https://api.moderndecordiaries.com/api/blogs/${post}/`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get('http://127.0.0.1:8000/api/categories/'),
-          axios.get('http://127.0.0.1:8000/api/tags/')
+          axios.get('https://api.moderndecordiaries.com/api/categories/'),
+          axios.get('https://api.moderndecordiaries.com/api/tags/')
         ]);
 
         setPostData(postRes.data);
@@ -152,7 +152,7 @@ export function PostEditView({ post }: Props) {
       });
 
       const token = localStorage.getItem('token');
-      await axios.patch(`http://127.0.0.1:8000/api/blogs/${post}/`, formData, {
+      await axios.patch(`https://api.moderndecordiaries.com/api/blogs/${post}/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,

@@ -41,7 +41,7 @@ const Login = () => {
 
   const fetchUserTypeAndRedirect = async (userId: any, token: any) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/apis/users/${userId}/`, {
+      const response = await axios.get(`https://api.moderndecordiaries.com/apis/users/${userId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +58,7 @@ const Login = () => {
 
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/apis/auth/login/`, values);
+      const response = await axios.post(`https://api.moderndecordiaries.com/apis/auth/login/`, values);
       const token = saveUserAuthDetails(response.data);
       const claims = jwtDecode(token);
       await fetchUserTypeAndRedirect(claims.user_id, token);

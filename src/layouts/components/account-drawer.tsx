@@ -70,7 +70,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
     const fetchUserDetails = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/apis/users/${claims.user_id}/`, {
+        const response = await axios.get(`https://api.moderndecordiaries.com/apis/users/${claims.user_id}/`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

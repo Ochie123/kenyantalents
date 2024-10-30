@@ -101,7 +101,7 @@ export function PostItemHorizontal({ post, onDeleteSuccess }: PostItemProps) {
       setIsDeleting(true);
       const token = localStorage.getItem('token');
       
-      await axios.delete(`http://127.0.0.1:8000/api/blogs/${post.id}/`, {
+      await axios.delete(`https://api.moderndecordiaries.com/api/blogs/${post.id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
