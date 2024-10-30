@@ -25,7 +25,7 @@ const Search = ({ mount, onClose }) => {
   const router = useRouter();
 
   const encodedSearchQuery = encodeURIComponent(query || '');
-  const url = query ? `${process.env.NEXT_PUBLIC_BASE_URL || 'https://api.moderndecordiaries.com'}/api/blogs/?search=${encodedSearchQuery}` : null;
+  const url = query ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://127.0.0.1:8000'}/api/blogs/?search=${encodedSearchQuery}` : null;
 
   const { data, isLoading, error: swrError } = useSWR(url, fetchPosts, { revalidateOnFocus: false });
   const posts = data?.results || [];

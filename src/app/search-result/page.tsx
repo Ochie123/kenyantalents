@@ -7,7 +7,7 @@ import HandlePagination from '@/components/Other/HandlePagination';
 import { useSearchPosts } from '@/actions/blog';
 import Image from 'next/image';
 //import LiveSearch from '@/components/Header/New/LiveSearch';
-import "../globals.css";
+
 
 const defaultImage = '/images/other/404-img.png';
 

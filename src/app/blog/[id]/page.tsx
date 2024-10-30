@@ -6,8 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getBlog } from '@/actions/blog-ssr';
 import { useGetPosts } from '@/actions/blog';
-import BlogItem from '@/components/Blog/BlogItem';
-import '../../globals.css';
+import Social from '@/components/helpers/Socials';
 
 type Props = {
   params: { id: string };
@@ -80,7 +79,7 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
       <div className='container'>
         <div className="flex flex-col lg:flex-row gap-8 pt-1">
           {/* Main Content - 7 columns */}
-          <div className="lg:w-7/12">
+          <div className="lg:w-8/12">
             <h1 className="text-2xl lg:text-4xl font-bold text-black mt-4 mb-5">
               {blog.title}
             </h1>
@@ -154,22 +153,15 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
             {/* Share buttons */}
             <div className="flex items-center gap-4 mt-8">
               <span className="font-medium">Share:</span>
+              
               <div className="flex gap-3">
-                {['facebook', 'twitter', 'instagram', 'pinterest'].map((social) => (
-                  <Link
-                    key={social}
-                    href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200"
-                  >
-                    <div className={`icon-${social}`}></div>
-                  </Link>
-                ))}
+              <Social socialName={blog.title} className="social-icons" />
               </div>
             </div>
           </div>
 
           {/* Sidebar - 5 columns */}
-          <div className="lg:w-5/12">
+          <div className="lg:w-4/12">
             <div className="sticky top-24">
               {/* Author Info */}
               <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
@@ -183,9 +175,9 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
                   />
                   <div>
                     <h3 className="font-bold text-lg">{blog.user_full_name}</h3>
-                    <p className="text-gray-500">245 Followers</p>
+                    <p className="text-gray-500">245 Likes</p>
                     <button className="mt-2 px-4 py-1 border rounded-full text-sm hover:bg-gray-50">
-                      Follow
+                      Like
                     </button>
                   </div>
                 </div>

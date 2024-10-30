@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/Header/New/theme-provider';
 import Navbar from '@/components/Header/New/Navbar';
 import Footer from '@/components/Footer/Footer';
 import Tags from './blog/front/Tags';
+import "./globals.css";
 
 const instrument = Instrument_Sans({ subsets: ['latin'] })
 
@@ -26,7 +27,7 @@ export default function RootLayout({
       <html lang="en">
       <ThemeProvider
         attribute="class"
-        defaultTheme="dark"
+        defaultTheme="light"
         enableSystem
         disableTransitionOnChange
         >
@@ -34,9 +35,11 @@ export default function RootLayout({
 
         <body className={instrument.className}>
             <Navbar /> {/* Add Navbar here */}
+            <div className="container">
               {children} {/* This will render the page content */}
 
               <Tags /> 
+              </div>
               <Footer /> {/* Add Footer here */}
           <Analytics />
       
