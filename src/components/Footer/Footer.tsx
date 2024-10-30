@@ -7,8 +7,8 @@ const Footer = () => {
     return (
         <>
             <div id="footer" className='footer border-t border-line gap-5 py-4'>
+            <div className="container">
                 <div className="footer-main bg-surface">
-                    <div className="container">
                         <div className="content-footer py-[60px] flex justify-between flex-wrap gap-y-8">
                             <div className="company-infor basis-1/4 max-lg:basis-full pr-7">
                             <Link href='/'>

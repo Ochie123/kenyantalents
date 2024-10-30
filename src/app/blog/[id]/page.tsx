@@ -1,12 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlog } from '@/actions/blog-ssr';
 import { useGetPosts } from '@/actions/blog';
 import Social from '@/components/helpers/Socials';
+import { Products } from '@/components/Home1/homepage';
 
 type Props = {
   params: { id: string };
@@ -57,11 +59,27 @@ export default async function BlogDetailPage({ params }: Props) {
 // Separate client component to handle client-side fetching and rendering
 function BlogDetailTwo({ blog }: { blog: Blog }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const defaultImage = '/images/other/404-img.png';
 
   const { posts, postsLoading, totalCount } = useGetPosts({
     order_by: '-publish',
   });
+
+  const handleTagClick = (tagId: number) => {
+    const current = new URLSearchParams(Array.from(searchParams.entries()));
+  
+    if (tagId) {
+      current.set('tags', tagId.toString());
+    } else {
+      current.delete('tags');
+    }
+  
+    const search = current.toString();
+    const query = search ? `?${search}` : '';
+  
+    router.push(`/blog/front${query}`);
+  };
 
   const truncateTitle = (title: string, maxLength: number) => {
     if (title.length <= maxLength) {
@@ -197,7 +215,8 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
               {blog.tags.map((tag) => (
                 <span
                   key={tag.id}
-                  className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                  className="px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer hover:bg-gray-200"
+                  onClick={() => handleTagClick(tag.id)}
                 >
                   {tag.title}
                 </span>
@@ -263,7 +282,11 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
               </div>
             </div>
           </div>
+
         </div>
+        <div className='lg:pb-2 md:pb-1 pb-1 pt-5'>
+                <Products />
+                </div>
     </>
   );
 }

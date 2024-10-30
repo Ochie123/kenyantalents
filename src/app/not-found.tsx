@@ -4,7 +4,7 @@ import { CONFIG } from '@/config-global';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `404 page not found! | Error - ${CONFIG.site.name}` };
+export const metadata = { title: `404 page not found! | Error ` };
 
 export default function Page() {
   return <> <h3>Not found</h3>

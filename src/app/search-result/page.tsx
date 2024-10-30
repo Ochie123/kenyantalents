@@ -50,7 +50,7 @@ const SearchResult = () => {
   return (
     <>
       <div className='blog grid md:py-20 py-10 pb-8 sm:pt-[30px]'>
-        <div className="container">
+     
           {/* Add the LiveSearch component here <div className="mb-8">  <LiveSearch />  </div>*/}
   
           <div className="heading flex flex-col items-center mb-6 pt-10">
@@ -113,7 +113,6 @@ const SearchResult = () => {
             </>
           )}
         </div>
-      </div>
     </>
   );
 };

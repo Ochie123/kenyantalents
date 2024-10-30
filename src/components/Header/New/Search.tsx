@@ -57,7 +57,7 @@ const Search = ({ mount, onClose }) => {
       animate={{scale: 1, opacity: 1}}
       transition={{duration: 0.5}}
       onClick={(e) => e.stopPropagation()} 
-      className='relative border rounded-lg h-[90vh] max-w-[700px] w-full bg-background text-foreground overflow-hidden overflow-y-scroll shadow'
+      className='relative border rounded-lg h-[60vh] max-w-[700px] w-full bg-background text-foreground overflow-hidden overflow-y-scroll shadow'
     >
       <div>
         <div className='mb-8'>

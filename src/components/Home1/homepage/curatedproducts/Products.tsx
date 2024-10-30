@@ -46,7 +46,7 @@ function Products() {
     <>
       <div className="page-width">
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} mt={5}>
-          <Typography variant="h5" fontWeight="bold">MORE TOP READS</Typography>
+          <Typography variant="h5" fontWeight="bold">More Top Reads</Typography>
         </Box>
       </div>
       <Divider />

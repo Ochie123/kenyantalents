@@ -48,7 +48,7 @@ const NewsInsight: React.FC = () => {
   return (
     <>
       <div className="news-block md:pt-20 pt-10">
-        <div className="container">
+  
           <div className="heading3 text-center">More Top Reads</div>
           <Divider />
           <div className="list-blog grid md:grid-cols-3 gap-[30px] md:mt-10 mt-6">
@@ -72,7 +72,6 @@ const NewsInsight: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
       </div>
     </>
   );

@@ -25,25 +25,22 @@ const Tags = () => {
 
     const handleTagClick = (tagId: number) => {
         const current = new URLSearchParams(Array.from(searchParams.entries()));
-        
+      
         if (tagId) {
-            current.set('tags', tagId.toString());
+          current.set('tags', tagId.toString());
         } else {
-            current.delete('tags');
+          current.delete('tags');
         }
-        
+      
         const search = current.toString();
         const query = search ? `?${search}` : '';
-        
-        router.push(`${pathname}${query}`);
-    };
-
-   
+      
+        router.push(`/blog/front${query}`);
+      };
 
 
     return (
 <>
-<div className='container'>
 <div className="filter-tags md:mt-10 mt-6">
 <div className="heading6">Tags Cloud</div>
 <div className="list-tags flex items-center flex-wrap gap-3 mt-4">
@@ -58,7 +55,7 @@ const Tags = () => {
     ))}
 </div>
 </div>
-</div>
+
 </>
     )
 }

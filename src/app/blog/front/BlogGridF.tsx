@@ -47,13 +47,12 @@ const BlogGridF = () => {
     if (postsLoading || categoriesLoading || tagsLoading) {
         return (
             <div className='blog grid md:py-20 py-10 sm:pt-[200px]'>
-                <div className="container">
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {Array.from({ length: 6 }).map((_, index) => (
                             <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-64"></div>
                         ))}
                     </div>
-                </div>
             </div>
         );
     }
@@ -61,11 +60,11 @@ const BlogGridF = () => {
     if (!posts || posts.length === 0) {
         return (
             <div className='blog grid md:py-20 py-10 sm:pt-[200px]'>
-                <div className="container">
+             
                     <div className="flex justify-center items-center h-screen">
                         No blog posts match your filter criteria.
                     </div>
-                </div>
+       
             </div>
         );
     }
