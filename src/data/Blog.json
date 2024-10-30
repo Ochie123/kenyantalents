@@ -1,0 +1,128 @@
+[
+    {
+        "id": "1",
+        "category": "home decor",
+        "tag": "essentials, interior",
+        "title": "Essential Home Decor Items for Every Room",
+        "date": "Jan 15, 2024",
+        "author": "Sophie Williams",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor4.jpeg",
+        "coverImg": "/images/homedecor/moderndecor4.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor4.jpeg",
+            "/images/homedecor/moderndecor4.jpeg"
+        ],
+        "shortDesc": "Discover the essential home decor items every homeowner should have to create a beautiful living space.",
+        "description": "Creating a comfortable and stylish home can be overwhelming. This article provides a helpful list of essential home decor items that will enhance the beauty of your space. From decorative cushions to wall art, we cover it all.",
+        "slug": "essential-home-decor-items"
+    },
+    {
+        "id": "2",
+        "category": "home decor",
+        "tag": "organic, sustainable",
+        "title": "Why Choose Sustainable Home Decor?",
+        "date": "Feb 10, 2024",
+        "author": "Emily Carter",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor1.jpeg",
+        "coverImg": "/images/homedecor/moderndecor1.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor1.jpeg",
+            "/images/homedecor/moderndecor1.jpeg"
+        ],
+        "shortDesc": "Learn the benefits of sustainable home decor and why it’s a great choice for your home.",
+        "description": "Sustainable home decor is becoming increasingly popular among homeowners who want to make eco-friendly choices. This article explains the advantages of sustainable materials, from being free of harmful chemicals to their durability and aesthetic appeal.",
+        "slug": "sustainable-home-decor"
+    },
+    {
+        "id": "3",
+        "category": "home decor",
+        "tag": "seasonal, styling",
+        "title": "Styling Your Home for Different Seasons: Tips and Ideas",
+        "date": "Mar 5, 2024",
+        "author": "Jessica Brown",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor2.jpeg",
+        "coverImg": "/images/homedecor/moderndecor2.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor2.jpeg",
+            "/images/homedecor/moderndecor2.jpeg"
+        ],
+        "shortDesc": "Find out how to style your home for different seasons with these practical tips and creative ideas.",
+        "description": "From cozying up your space in winter to refreshing it in summer, styling for the seasons can be a fun challenge. This guide provides tips on color palettes, seasonal accessories, and creating a welcoming atmosphere for every time of the year.",
+        "slug": "seasonal-home-styling"
+    },
+    {
+        "id": "4",
+        "category": "home decor",
+        "tag": "trends, design",
+        "title": "Top Home Decor Trends for 2024: Stylish Ideas for Your Space",
+        "date": "Apr 10, 2024",
+        "author": "Lucy Green",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor3.jpeg",
+        "coverImg": "/images/homedecor/moderndecor3.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor3.jpeg",
+            "/images/homedecor/moderndecor3.jpeg"
+        ],
+        "shortDesc": "Stay up-to-date with the latest home decor trends in 2024 and transform your space with stylish ideas.",
+        "description": "Home decor trends are constantly evolving, and 2024 is no exception! From bold colors to minimalist designs, this article showcases the latest trends in home decor and how to incorporate them into your living space.",
+        "slug": "home-decor-trends-2024"
+    },
+    {
+        "id": "5",
+        "category": "home decor",
+        "tag": "maintenance, care",
+        "title": "How to Care for Your Home Decor: Maintenance Tips",
+        "date": "May 20, 2024",
+        "author": "Sarah Lewis",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor6.jpeg",
+        "coverImg": "/images/homedecor/moderndecor6.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor6.jpeg",
+            "/images/homedecor/moderndecor6.jpeg"
+        ],
+        "shortDesc": "Learn the best ways to care for your home decor, from cleaning techniques to preserving your pieces.",
+        "description": "Home decor items require proper care to maintain their beauty and longevity. This guide covers the best practices for cleaning and maintaining various decor items, ensuring they remain in great condition for years to come.",
+        "slug": "home-decor-care"
+    },
+    {
+        "id": "6",
+        "category": "home decor",
+        "tag": "budget, shopping",
+        "title": "Budget-Friendly Home Decor: How to Shop Smart",
+        "date": "Jun 15, 2024",
+        "author": "Mark Taylor",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor3.jpeg",
+        "coverImg": "/images/homedecor/moderndecor3.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor3.jpeg",
+            "/images/homedecor/moderndecor3.jpeg"
+        ],
+        "shortDesc": "Find out how to shop for stylish and high-quality home decor without breaking the bank.",
+        "description": "Buying home decor on a budget doesn’t mean sacrificing quality or style. This article provides smart shopping tips, such as looking for sales, choosing versatile pieces, and exploring thrift stores for unique finds.",
+        "slug": "budget-friendly-home-decor"
+    },
+    {
+        "id": "7",
+        "category": "home decor",
+        "tag": "gift guide, housewarming",
+        "title": "Housewarming Gift Ideas: Stylish Home Decor",
+        "date": "Jul 10, 2024",
+        "author": "Laura White",
+        "avatar": "/images/avatar/1.png",
+        "thumbImg": "/images/homedecor/moderndecor1.jpeg",
+        "coverImg": "/images/homedecor/moderndecor1.jpeg",
+        "subImg": [
+            "/images/homedecor/moderndecor1.jpeg",
+            "/images/homedecor/moderndecor1.jpeg"
+        ],
+        "shortDesc": "Looking for the perfect housewarming gift? Check out these stylish home decor ideas.",
+        "description": "Housewarming parties are a great opportunity to give the gift of beautiful home decor. This article highlights trendy and practical home decor options that new homeowners will appreciate, from decorative items to functional pieces.",
+        "slug": "housewarming-gift-decor"
+    }
+]
