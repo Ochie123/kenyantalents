@@ -1,13 +1,11 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import HandlePagination from '@/components/Other/HandlePagination';
 import { useGetPosts, useCategories, useTags } from '@/actions/blog';
 import BlogItem from '@/components/Blog/BlogItem';
 
-
 const BlogGridF = () => {
-    // ... (previous state and hooks remain the same)
     const [currentPage, setCurrentPage] = useState(0);
     const productsPerPage = 20;
     const offset = currentPage * productsPerPage;
@@ -46,13 +44,22 @@ const BlogGridF = () => {
         router.push(`${pathname}${query}`);
     };
 
-    if (postsLoading || categoriesLoading) {
-        return (
-            <div className='flex justify-center items-center h-screen'>
-                <div>Loading...</div>
-            </div>
-        );
-    }
+    useEffect(() => {
+        if (postsLoading || categoriesLoading || tagsLoading) {
+            // Display a skeleton loading state
+            return (
+                <div className='blog grid md:py-20 py-10 sm:pt-[200px]'>
+                    <div className="container">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {Array.from({ length: 6 }).map((_, index) => (
+                                <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-64"></div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    }, [postsLoading, categoriesLoading, tagsLoading]);
 
     if (!posts || posts.length === 0) {
         return (
@@ -75,48 +82,48 @@ const BlogGridF = () => {
 
     return (
         <div className='blog list md:py-10 py-1 pt-20'>
-                <div className="flex justify-between max-xl:flex-col gap-y-12">
-                    <div className="left xl:w-3/4 xl:pr-2">
-                        {/* Featured Post */}
-                        {featuredPost && (
+            <div className="flex justify-between max-xl:flex-col gap-y-12">
+                <div className="left xl:w-3/4 xl:pr-2">
+                    {/* Featured Post */}
+                    {featuredPost && (
                         <BlogItem 
                             data={featuredPost} 
                             type="featured"
                         />
                     )}
 
-                        {/* Regular Posts Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {regularPosts.map(item => (
-                                <BlogItem 
-                                    key={item.id}
-                                    data={item}
-                                    type="grid"
-                                />
-                            ))}
-                        </div>
-
-                        {pageCount > 1 && (
-                            <div className="list-pagination w-full flex items-center md:mt-10 mt-6">
-                                <HandlePagination
-                                    pageCount={pageCount}
-                                    onPageChange={(selected: number) => setCurrentPage(selected)}
-                                />
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Recent Posts in Sidebar */}
-                    <div className="list-recent pt-1">
-                        {posts.slice(1, 6).map(item => (
+                    {/* Regular Posts Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {regularPosts.map(item => (
                             <BlogItem 
                                 key={item.id}
                                 data={item}
-                                type="recent"
+                                type="grid"
                             />
                         ))}
                     </div>
+
+                    {pageCount > 1 && (
+                        <div className="list-pagination w-full flex items-center md:mt-10 mt-6">
+                            <HandlePagination
+                                pageCount={pageCount}
+                                onPageChange={(selected: number) => setCurrentPage(selected)}
+                            />
+                        </div>
+                    )}
                 </div>
+
+                {/* Recent Posts in Sidebar */}
+                <div className="list-recent pt-1">
+                    {posts.slice(1, 6).map(item => (
+                        <BlogItem 
+                            key={item.id}
+                            data={item}
+                            type="recent"
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
