@@ -9,7 +9,7 @@ import { getBlog } from '@/actions/blog-ssr';
 import { useGetPosts } from '@/actions/blog';
 import Social from '@/components/helpers/Socials';
 import { Products } from '@/components/Home1/homepage';
-
+import BlogLikes from './BlogLikes';
 type Props = {
   params: { id: string };
 };
@@ -46,6 +46,8 @@ interface Blog {
   created: string;
   updated: string;
   status: string;
+  like_count: number,
+  is_liked: boolean;
 }
 
 // Fetch blog data in SSR and pass it to a client component
@@ -62,6 +64,36 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
   const searchParams = useSearchParams();
   const defaultImage = '/images/other/404-img.png';
 
+  const [likeCount, setLikeCount] = useState(blog.like_count);
+  const [isLiked, setIsLiked] = useState(blog.is_liked);
+  const [isLiking, setIsLiking] = useState(false);
+
+  const handleLike = async () => {
+    if (isLiking) return;
+    
+    try {
+      setIsLiking(true);
+      const response = await fetch(`/api/blog/${blog.id}/toggle_like/`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to toggle like');
+      
+      const data = await response.json();
+      setLikeCount(data.like_count);
+      setIsLiked(data.status === 'liked');
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    } finally {
+      setIsLiking(false);
+    }
+  };
+
+  
   const { posts, postsLoading, totalCount } = useGetPosts({
     order_by: '-publish',
   });
@@ -270,10 +302,9 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
                   />
                   <div>
                     <h3 className="font-bold text-lg">{blog.user_full_name}</h3>
-                    <p className="text-gray-500">245 Likes</p>
-                    <button className="mt-2 px-4 py-1 border rounded-full text-sm hover:bg-gray-50">
-                      Like
-                    </button>
+                    <div className="mt-2 px-4 py-1 border rounded-full text-sm hover:bg-gray-50">
+                    <BlogLikes blog={blog}/>
+                    </div>
                     <div className="flex pt-5">
                 <Social socialName={blog.title} className="social-icons" />
               </div>

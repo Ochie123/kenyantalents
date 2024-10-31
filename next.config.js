@@ -2,6 +2,14 @@
 const isStaticExport = 'false'; // Or 'true' depending on your use case
 
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://kgt.inventoryr.online/api/:path*',
+      },
+    ];
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
