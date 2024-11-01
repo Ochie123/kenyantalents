@@ -126,7 +126,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ categories = [] }) => {
         <>
             {/* Mobile Menu Toggle Button - Now visible from xs to md */}
         
-            <div className="md:hidden" onClick={handleDrawerToggle}>
+            <div className="lg:hidden" onClick={handleDrawerToggle}>
             <LuAlignRight className="text-3xl" />
             </div>
 
@@ -180,7 +180,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ categories = [] }) => {
                         maxWidth: '320px',
                         boxSizing: 'border-box'
                     },
-                    display: { md: 'none' }  // Hide drawer from md breakpoint up
+                    display: { lg: 'none' }  // Hide drawer from md breakpoint up
                 }}
             >
                 {drawerContent}
