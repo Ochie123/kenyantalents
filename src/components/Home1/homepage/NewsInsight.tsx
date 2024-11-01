@@ -17,8 +17,13 @@ interface Blog {
     shortDesc: string;
     description: string,
   }
-  
 
+const generateSlug = (title: string): string => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
 
 const NewsInsight: React.FC = () => {
   const router = useRouter();
@@ -31,9 +36,10 @@ const NewsInsight: React.FC = () => {
     order_by: '-publish',
   });
 
-  const handleBlogClick = (blogId: string) => {
-    router.push(`/blog/${blogId}`);
-  };
+  const handleBlogClick = (blogId: string, title: string) => {
+    const slug = generateSlug(title);
+    router.push(`/blog/${blogId}/${slug}`);
+};
 
   // Handle loading state
   if (postsLoading) {
@@ -54,7 +60,7 @@ const NewsInsight: React.FC = () => {
           <div className="list-blog grid md:grid-cols-3 gap-[30px] md:mt-10 mt-6">
             
             {posts.slice(0, productsPerPage).map((blog, index) => (
-              <div key={blog.id} onClick={() => handleBlogClick(blog.id)}>
+              <div key={blog.id} onClick={() => handleBlogClick(blog.id, blog.title)}>
                 <BlogItem
                   key={index}
                   data={{

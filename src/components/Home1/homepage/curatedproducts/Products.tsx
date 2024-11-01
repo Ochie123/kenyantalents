@@ -16,6 +16,13 @@ interface Blog {
   thumbImg: string;
 }
 
+const generateSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 function Products() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = React.useState(0);
@@ -27,8 +34,10 @@ function Products() {
     order_by: '-publish',
   });
 
-  const handleBlogClick = (blogId: string) => {
-    router.push(`/blog/${blogId}`);
+  const handleBlogClick = (blogId: string, title: string) => {
+    const slug = generateSlug(title);
+    router.push(`/blog/${blogId}/${slug}`);
+
 };
 
   // Handle loading state
@@ -67,7 +76,7 @@ function Products() {
         }}
       >
         {posts.slice(0, productsPerPage).map((blog) => (
-          <div key={blog.id} onClick={() => handleBlogClick(blog.id)}>
+          <div key={blog.id} onClick={() => handleBlogClick(blog.id, blog.title)}>
             <Product
               blog={{
                 id: blog.id,

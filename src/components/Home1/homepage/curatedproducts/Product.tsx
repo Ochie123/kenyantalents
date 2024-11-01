@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
@@ -17,6 +18,13 @@ interface ProductProps {
   blog: Blog;
 }
 
+const generateSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 const truncateTitle = (title: string, maxLength: number) => {
   if (title.length <= maxLength) {
     return title;
@@ -24,7 +32,15 @@ const truncateTitle = (title: string, maxLength: number) => {
   return title.slice(0, maxLength) + '...';
 };
 
+
 function Product({ blog }: ProductProps) {
+  const router = useRouter();
+
+  const handleBlogClick = (blogId: string, title: string) => {
+    const slug = generateSlug(title);
+    router.push(`/blog/${blogId}/${slug}`);
+
+};
   return (
     <Card
       orientation="vertical"
@@ -38,8 +54,8 @@ function Product({ blog }: ProductProps) {
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}
+      onClick={() => handleBlogClick(blog.id, blog.title)}
     >
-      <Link href={`/blog/detail?id=${blog.id}`}>
         <AspectRatio
           ratio="4/3"
           variant="soft"
@@ -61,7 +77,7 @@ function Product({ blog }: ProductProps) {
             />
           )}
         </AspectRatio>
-      </Link>
+
       <Box sx={{ padding: 1 }}>
         <Typography fontWeight="xl">{truncateTitle(blog.title, 40)}</Typography>
       </Box>

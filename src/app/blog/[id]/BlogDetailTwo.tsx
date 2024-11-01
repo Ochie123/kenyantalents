@@ -50,6 +50,13 @@ interface Blog {
   is_liked: boolean;
 }
 
+const generateSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 // Fetch blog data in SSR and pass it to a client component
 export default async function BlogDetailPage({ params }: Props) {
   const { id } = params;
@@ -93,6 +100,10 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
     }
   };
 
+  const handleBlogClick = (blogId: string, title: string) => {
+    const slug = generateSlug(title);
+    router.push(`/blog/${blogId}/${slug}`);
+  };
   
   const { posts, postsLoading, totalCount } = useGetPosts({
     order_by: '-publish',
@@ -119,10 +130,7 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
     }
     return title.slice(0, maxLength) + '...';
   };
-  
-  const handleBlogClick = (blogId: string) => {
-    router.push(`/blog/${blogId}`);
-  };
+
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -267,7 +275,7 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
                 <div
                   className="item flex gap-4 mt-5 cursor-pointer"
                   key={item.id}
-                  onClick={() => handleBlogClick(item.id)}
+                  onClick={() => handleBlogClick(item.id, item.title)} 
                 >
                   <Image
                     src={item.cover_image}

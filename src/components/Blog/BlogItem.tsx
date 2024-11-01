@@ -1,53 +1,118 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { BlogType } from '@/type/BlogType'
+import { useRouter } from 'next/navigation'
+import { getBlog } from '@/actions/blog-ssr';
 
-interface BlogProps {
-    data: BlogType
-    type: string
-}
+// Custom hook to handle intersection observer
+const useIntersectionObserver = (options = {}) => {
+    const [isIntersecting, setIntersecting] = useState(false);
+    const ref = useRef(null);
+  
+    useEffect(() => {
+      if (!ref.current) return;
+  
+      const observer = new IntersectionObserver(([entry]) => {
+        setIntersecting(entry.isIntersecting);
+      }, options);
+  
+      observer.observe(ref.current);
+  
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [ref, options]);
+  
+    return [ref, isIntersecting];
+  };
+  
+  // Prefetch manager specifically for blog content
+  const BlogPrefetchManager = {
+    cache: new Map<string, any>(),
+    
+    prefetch: async (blogId: string) => {
+      if (BlogPrefetchManager.cache.has(blogId)) return;
+      
+      try {
+        const data = await getBlog(blogId);
+        BlogPrefetchManager.cache.set(blogId, data);
+      } catch (error) {
+        console.error('Error prefetching blog:', error);
+      }
+    }
+  };
+  
+  // Modified BlogItem component with prefetching
+  interface BlogItemProps {
+    data: BlogType;
+    type: string;
+  }
+
 
 const BlogItem: React.FC<BlogProps> = ({ data, type }) => {
     const router = useRouter();
-    const defaultImage = '/images/other/404-img.png';
-
-    const handleBlogClick = (blogId: string) => {
-        router.push(`/blog/${blogId}`);
+    const [ref, isIntersecting] = useIntersectionObserver({
+      rootMargin: '50px',
+      threshold: 0.1,
+    });
+  
+    const generateSlug = (title: string): string => {
+      return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
     };
-
+  
+    const handleBlogClick = (blogId: string, title: string) => {
+      const slug = generateSlug(title);
+      router.push(`/blog/${blogId}/${slug}`);
+    };
+  
+    // Prefetch when the blog item comes into view
+    useEffect(() => {
+      if (isIntersecting) {
+        BlogPrefetchManager.prefetch(data.id.toString());
+      }
+    }, [isIntersecting, data.id]);
+  
+    const handleMouseEnter = () => {
+      BlogPrefetchManager.prefetch(data.id.toString());
+    };
+  
     const truncateDescription = (description: string, maxLength: number) => {
-        if (!description) return '';
-        if (description.length <= maxLength) {
-            return description;
-        }
-        return description.slice(0, maxLength) + '...';
+      if (description.length <= maxLength) return description;
+      return description.slice(0, maxLength) + '...';
     };
 
     const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-        });
-    };
+      return new Date(dateString).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+      });
+  };
 
+    const defaultImage = '/images/other/404-img.png';
+    
     if (type === "featured") {
         return (
             <div 
                 className="max-w-full flex flex-col lg:flex-row lg:items-center gap-7 lg:gap-11 bg-white shadow-sm rounded-sm p-4 lg:p-2 mb-8 cursor-pointer"
-                onClick={() => handleBlogClick(data.id)}
+                onClick={() => handleBlogClick(data.id.toString(), data.title)}
             >
                 <div className="lg:max-w-[650px] w-full">
-                    <Image
-                        src={data.cover_image || defaultImage}
-                        alt={data.title}
-                        width={536}
-                        height={320}
-                        className="w-full h-full object-cover"
-                    />
+                <Image
+                    src={data.cover_image && data.cover_image.length > 0 ? data.cover_image : defaultImage}
+                    width={536}
+                    height={320}
+                    alt={data.title}
+                    className='w-full duration-500 flex-shrink-0'
+                    priority={isIntersecting} // Prioritize loading for visible images
+                />
                 </div>
                 <div className="lg:max-w-[540px] w-full">
                     <h1 className="font-bold text-2xl xl:text-3xl text-black mb-4">
@@ -70,7 +135,7 @@ const BlogItem: React.FC<BlogProps> = ({ data, type }) => {
         return (
             <div 
                 className="flex flex-col bg-white shadow-1 rounded-sm overflow-hidden cursor-pointer h-full"
-                onClick={() => handleBlogClick(data.id)}
+                onClick={() => handleBlogClick(data.id.toString(), data.title)}
             >
                 <div className="aspect-w-16 aspect-h-9 w-full">
                     <Image
@@ -104,7 +169,7 @@ const BlogItem: React.FC<BlogProps> = ({ data, type }) => {
         return (
             <div 
                 className="item flex gap-4 mt-5 cursor-pointer bg-white shadow-sm rounded-sm p-2"
-                onClick={() => handleBlogClick(data.id)}
+                onClick={() => handleBlogClick(data.id.toString(), data.title)}
             >
                 <Image
                     src={data.cover_image || defaultImage}
