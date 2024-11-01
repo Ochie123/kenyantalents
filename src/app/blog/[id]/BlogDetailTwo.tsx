@@ -5,11 +5,15 @@ import { useSearchParams, usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { getBlog } from '@/actions/blog-ssr';
 import { useGetPosts } from '@/actions/blog';
 import Social from '@/components/helpers/Socials';
 import { Products } from '@/components/Home1/homepage';
 import BlogLikes from './BlogLikes';
+import EnhancedMarkdownViewer from '@/components/EnhancedMarkdownViewer';
+
+
 type Props = {
   params: { id: string };
 };
@@ -247,7 +251,7 @@ function BlogDetailTwo({ blog }: { blog: Blog }) {
               className="w-full rounded-lg mb-8"
             />
 
-            <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
+            <EnhancedMarkdownViewer content={blog.description} />
 
             {/* Tags */}
             <div className="flex items-center gap-4 mt-8 flex-wrap">
